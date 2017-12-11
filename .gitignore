@@ -15,6 +15,8 @@
 *.so
 *.dylib
 *.dll
+!pthreads-w32/dll/x86/*
+!pthreads-w32/dll/x64/*
 
 # Fortran module files
 *.mod
@@ -25,6 +27,8 @@
 *.la
 *.a
 *.lib
+!pthreads-w32/lib/x86/*
+!pthreads-w32/lib/x64/*
 
 # Executables
 *.exe
