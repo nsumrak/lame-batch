@@ -17,8 +17,8 @@
 //	 51 Franklin Street, Fifth Floor, Boston, MA 02110 - 1301 USA.
 
 
-// pthread-w32 VS 2015 config
-#define HAVE_STRUCT_TIMESPEC
+// Uncomment if pthread.h causes error (VS 2015 config)
+//#define HAVE_STRUCT_TIMESPEC
 
 #include <stdio.h>
 #include <stdlib.h>
