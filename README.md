@@ -19,7 +19,7 @@ Building on Linux
 
 ### To run:
     $> ./lametest <path>
-<path>: file or directory to process
+Where path is file or directory to process.
 
 ### Example:
     ./lametest testcase
