@@ -70,4 +70,11 @@ lame-3.100/mpglib/.deps/
 lame-3.100/mpglib/Makefile
 lame-3.100/stamp-h1
 lame-3.100/vc_solution/Makefile
+
+# generated files
 lametest
+Debug/*
+testcase/*.mp3
+*.sdf
+*.opensdf
+*.suo
