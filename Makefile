@@ -7,7 +7,7 @@ $(APPNAME): main.o lame-3.100/libmp3lame/.libs/libmp3lame.a
 	$(CC) -o $@ -pthread $^
 
 lame-3.100/libmp3lame/.libs/libmp3lame.a:
-	cd lame-3.100;./configure
+	cd lame-3.100; chmod u+x configure; ./configure
 	make -C lame-3.100
 
 main.o: main.cpp platform.h thread_signal.h wavreader.h lame_enc.h Makefile
@@ -17,7 +17,9 @@ main.o: main.cpp platform.h thread_signal.h wavreader.h lame_enc.h Makefile
 
 clean:
 	rm -rf $(APPNAME) *.o
-	make -C lame-3.100 distclean
+	-make -C lame-3.100 distclean
 
 distclean: clean
 	rm -rf *~ log*
+	rm -rf ./testcase/*.mp3
+	rm -rf ./Debug

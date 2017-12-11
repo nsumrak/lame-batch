@@ -30,7 +30,9 @@ Options
 -------
 ### Recurse subdirectories for the given path:
     const bool gc_recursive = false;
-To enable, change it to __true__.
+To enable this option, change _gc_recursive_ constant in _main.cpp_ to __true__.
+
+### MP3 Quality
 
 By default, VBR with standard quality is used for encoding. You can adjust settings by changing *open()*
 method of *LameEnc* class withing *lame_enc.h* file.
