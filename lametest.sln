@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lametest", "lametest.vcxproj", "{CC429F97-B54F-4836-9F34-B875E9723427}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20536101-3B0E-43EF-94F9-080D595DAC57} = {20536101-3B0E-43EF-94F9-080D595DAC57}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmp3lame-static", "lame-3.100\vc_solution\vc9_libmp3lame.vcxproj", "{20536101-3B0E-43EF-94F9-080D595DAC57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		ReleaseNASM|Win32 = ReleaseNASM|Win32
+		ReleaseSSE2|Win32 = ReleaseSSE2|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC429F97-B54F-4836-9F34-B875E9723427}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.Debug|Win32.Build.0 = Debug|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.Release|Win32.ActiveCfg = Release|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.Release|Win32.Build.0 = Release|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.ReleaseNASM|Win32.ActiveCfg = Release|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.ReleaseNASM|Win32.Build.0 = Release|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.ReleaseSSE2|Win32.ActiveCfg = Release|Win32
+		{CC429F97-B54F-4836-9F34-B875E9723427}.ReleaseSSE2|Win32.Build.0 = Release|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.Debug|Win32.ActiveCfg = Debug|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.Debug|Win32.Build.0 = Debug|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.Release|Win32.ActiveCfg = Release|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.Release|Win32.Build.0 = Release|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.ReleaseNASM|Win32.ActiveCfg = ReleaseNASM|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.ReleaseNASM|Win32.Build.0 = ReleaseNASM|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.ReleaseSSE2|Win32.ActiveCfg = ReleaseSSE2|Win32
+		{20536101-3B0E-43EF-94F9-080D595DAC57}.ReleaseSSE2|Win32.Build.0 = ReleaseSSE2|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
