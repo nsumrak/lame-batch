@@ -122,12 +122,12 @@ bool openfile(const char *fname)
 	if (slen > 4 && !strcasecmp(fname + slen - 4, ".wav")) {
 		pthread_t th;
 		g_ts.wait_for_signal();
-		g_ts.new_thread();
 		int rc = pthread_create(&th, NULL, encode_file_thread, strdup(fname));
 		if (rc) {
 			debuglog("ERROR: return code from pthread_create() is %d\n", rc);
 			return false;
 		}
+		g_ts.new_thread();
 	}
 	return true;
 }
@@ -143,6 +143,11 @@ bool processfile(char *fname)
 			debuglog("opening directory %s\n", fname);
 			int slen = strlen(fname);
 			if (fname[slen - 1] != SLASH) {
+				// check if added slash would cross buffer boundary
+				if (slen >= MAX_PATH - 1) {
+					debuglog("ERROR: path too long!\n");
+					return false;
+				}
 				fname[slen++] = SLASH;
 				fname[slen] = 0;
 			}

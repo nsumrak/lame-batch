@@ -36,7 +36,12 @@ inline int getNumberOfCores()
 typedef long int32_t;
 typedef short int16_t;
 
+#ifdef _DEBUG
 #define debuglog printf
+#else
+#define debuglog(...)
+#endif
+
 #define strcasecmp stricmp
 inline void sleep(int sec) { ::Sleep(sec * 1000); }
 
@@ -44,7 +49,11 @@ inline void sleep(int sec) { ::Sleep(sec * 1000); }
 
 #include <unistd.h>
 
+#ifdef DEBUG
 #define debuglog printf
+#else
+#define debuglog(...)
+#endif
 
 #define SLASH '/'
 #define MAX_PATH 256

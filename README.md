@@ -1,6 +1,6 @@
 Multicore batch encoding
 ========================
-This project is used to batch convert WAV files to MP3 using LAMP library maximizing CPU utilization with multi-threading.
+This project is used to batch convert WAV files to MP3 using LAME library maximizing CPU utilization with multi-threading.
 It is designed to be compiled for Windows/Win32 target using Microsoft Visual Studio or Linux with standard GCC dev toolkit.
 
 Building on Windows

@@ -46,7 +46,7 @@ public:
 		close();
 	}
 
-	bool open(const char *fname, int num_channels, int sample_rate, int bits_per_sample, int data_byte_len)
+	bool open(const char *fname, int num_channels, int sample_rate, int bits_per_sample, unsigned long data_byte_len)
 	{
 
 		assert(num_channels == 1 || num_channels == 2);
@@ -60,7 +60,7 @@ public:
 
 		mp3buff = (unsigned char *)malloc(LAME_MAXMP3BUFFER);
 		if (!mp3buff) {
-			debuglog("lame: can allocate mp3 output buffer\n");
+			debuglog("lame: can't allocate mp3 output buffer\n");
 			close();
 			return false;
 		}
@@ -88,7 +88,7 @@ public:
 			close();
 			return false;
 		}
-		lame_set_num_samples(lame, data_byte_len / (num_channels * ((bits_per_sample + 7) / 8)));
+		lame_set_num_samples(lame, data_byte_len / (num_channels * (bits_per_sample>>3)));
 
 		lame_set_write_id3tag_automatic(lame, 1);
 

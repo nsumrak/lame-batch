@@ -37,7 +37,8 @@ protected:
 		int16_t bits_per_sample;
 	} wavfmt;
 
-	unsigned long sample_len, data_len, data_read;
+	unsigned long data_len, data_read;
+	//unsigned long sample_len; // currently unused - "fact" block
 	bool fmtfound;
 
 	bool sanity_check()
@@ -80,14 +81,15 @@ protected:
 
 				fmtfound = true;
 			}
-			else if (!memcmp(hd.label, "fact", 4))
-			{
-				debuglog("fact block found\n");
-				if (hd.len != 4)
-					fseek(inf, hd.len, SEEK_CUR);
-				else
-					if (fread(&sample_len, 4, 1, inf) != 4) return false;
-			}
+			// currently unused - for future extension
+			//else if (!memcmp(hd.label, "fact", 4))
+			//{
+			//	debuglog("fact block found\n");
+			//	if (hd.len != 4)
+			//		fseek(inf, hd.len, SEEK_CUR);
+			//	else
+			//		if (fread(&sample_len, 4, 1, inf) != 4) return false;
+			//}
 			else if (!memcmp(hd.label, "data", 4))
 			{
 				debuglog("data block found\n");
@@ -141,7 +143,8 @@ public:
 			fclose(inf);
 			inf = 0;
 		}
-		sample_len = data_len = data_read = 0;
+		data_len = data_read = 0;
+		//sample_len = 0;
 		fmtfound = false;
 		memset(&wavfmt, 0, sizeof(wavfmt));
 	}
@@ -149,16 +152,21 @@ public:
 	bool readsample(int &sample)
 	{
 		if (!inf || data_read >= data_len) return false;
-		unsigned char in[4];
+		union {
+			unsigned char b[4];
+			int16_t s[2];
+			int32_t l;
+		} in;
+
 		int byte_per_sample = get_byte_per_sample();
-		if (fread(in, byte_per_sample, 1, inf) != 1) return false;
+		if (fread(&in, byte_per_sample, 1, inf) != 1) return false;
 		data_read += byte_per_sample;
 		switch (byte_per_sample)
 		{
-		default:	sample = in[0] << 24; return true;
-		case 2:		sample = (in[0] << 16) | (in[1] << 24); return true;
-		case 3:		sample = (in[0] << 8) | (in[1] << 16) | (in[2] << 24); return true;
-		case 4:		sample = in[0] | (in[1] << 8) | (in[1] << 16) | (in[1] << 24); return true;
+		default:	sample = in.b[0] << 24; return true;
+		case 2:		sample = in.s[0] << 16; return true;
+		case 3:		sample = (in.b[0] << 8) | (in.b[1] << 16) | (in.b[2] << 24); return true;
+		case 4:		sample = in.l; return true;
 		}
 	}
 
@@ -170,7 +178,7 @@ public:
 	int get_byte_per_sample()
 	{
 		assert(inf);
-		return (wavfmt.bits_per_sample == 32 ? 4 : wavfmt.bits_per_sample == 24 ? 3 : wavfmt.bits_per_sample == 16 ? 2 : 1);
+		return (wavfmt.bits_per_sample >> 3);
 	}
 
 	int get_bits_per_sample()
@@ -191,7 +199,7 @@ public:
 		return wavfmt.sample_rate;
 	}
 
-	int get_data_byte_len()
+	unsigned long get_data_byte_len()
 	{
 		assert(inf);
 		return data_len;
